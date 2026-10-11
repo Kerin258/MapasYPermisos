@@ -40,7 +40,7 @@ if [[ "$platform" != "iPhoneSimulator" ]]; then
 fi
 
 executable="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleExecutable' "$app_path/Info.plist")"
-lipo -verify_arch arm64 "$app_path/$executable"
+lipo "$app_path/$executable" -verify_arch arm64
 
 build_id="${GITHUB_SHA:-$(date -u +%Y%m%dT%H%M%SZ)}"
 output_path="$project_root/dist-cloud/MapasYPermisos-Simulator-${build_id:0:12}.zip"
